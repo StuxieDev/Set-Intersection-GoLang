@@ -32,6 +32,7 @@ func pdfExampleFiles(t *testing.T) (file1, file2 string) {
 	return file1, file2
 }
 
+// TestRun_PDFExample_Table checks that run's table output reports the worked example's overlap figures.
 func TestRun_PDFExample_Table(t *testing.T) {
 	file1, file2 := pdfExampleFiles(t)
 	var stdout, stderr bytes.Buffer
@@ -49,6 +50,7 @@ func TestRun_PDFExample_Table(t *testing.T) {
 	}
 }
 
+// TestRun_PDFExample_JSON checks that run's -json output matches the worked example's figures.
 func TestRun_PDFExample_JSON(t *testing.T) {
 	file1, file2 := pdfExampleFiles(t)
 	var stdout, stderr bytes.Buffer
@@ -82,6 +84,7 @@ func TestRun_PDFExample_JSON(t *testing.T) {
 	}
 }
 
+// TestRun_CustomDelimiter checks that run works with a header row and a non-comma delimiter (TSV).
 func TestRun_CustomDelimiter(t *testing.T) {
 	file1 := writeCSV(t, "d1.tsv", []string{"id\tudprn", "1\t00012345", "2\t00067890"})
 	file2 := writeCSV(t, "d2.tsv", []string{"id\tudprn", "1\t00012345", "2\t00099999"})
@@ -99,6 +102,7 @@ func TestRun_CustomDelimiter(t *testing.T) {
 	}
 }
 
+// TestRun_MissingArgs checks that run errors when a required flag is omitted.
 func TestRun_MissingArgs(t *testing.T) {
 	file1, _ := pdfExampleFiles(t)
 	var stdout, stderr bytes.Buffer

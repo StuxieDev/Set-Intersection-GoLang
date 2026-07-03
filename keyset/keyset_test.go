@@ -21,6 +21,7 @@ func writeCSV(t *testing.T, name string, lines []string) string {
 	return path
 }
 
+// TestLoad_NoHeader checks that Load counts every row as a key when there's no header.
 func TestLoad_NoHeader(t *testing.T) {
 	path := writeCSV(t, "data.csv", []string{"A", "B", "C", "D", "D", "E", "F", "F"})
 
@@ -40,6 +41,7 @@ func TestLoad_NoHeader(t *testing.T) {
 	}
 }
 
+// TestLoad_HeaderByName checks that Load resolves Column to an index using the header row.
 func TestLoad_HeaderByName(t *testing.T) {
 	path := writeCSV(t, "data.csv", []string{
 		"id,udprn,name",
@@ -64,6 +66,8 @@ func TestLoad_HeaderByName(t *testing.T) {
 	}
 }
 
+// TestLoad_HeaderByIndex checks that a numeric Column still works when HasHeader is set,
+// and that keys with leading zeros are preserved as strings.
 func TestLoad_HeaderByIndex(t *testing.T) {
 	path := writeCSV(t, "data.csv", []string{
 		"id,udprn",
@@ -84,6 +88,7 @@ func TestLoad_HeaderByIndex(t *testing.T) {
 	}
 }
 
+// TestLoad_UnknownColumnName checks that Load errors when Column names a header that doesn't exist.
 func TestLoad_UnknownColumnName(t *testing.T) {
 	path := writeCSV(t, "data.csv", []string{"id,udprn", "1,00012345"})
 
@@ -93,6 +98,7 @@ func TestLoad_UnknownColumnName(t *testing.T) {
 	}
 }
 
+// TestLoad_ColumnOutOfRange checks that Load errors when a row doesn't have the requested column.
 func TestLoad_ColumnOutOfRange(t *testing.T) {
 	path := writeCSV(t, "data.csv", []string{"A", "B"})
 
@@ -102,6 +108,7 @@ func TestLoad_ColumnOutOfRange(t *testing.T) {
 	}
 }
 
+// TestLoad_MissingFile checks that Load errors when the path doesn't exist.
 func TestLoad_MissingFile(t *testing.T) {
 	_, err := Load(filepath.Join(t.TempDir(), "nope.csv"), Options{})
 	if err == nil {
@@ -109,6 +116,7 @@ func TestLoad_MissingFile(t *testing.T) {
 	}
 }
 
+// TestCompare_PDFExample checks Compare against the worked example from the task spec.
 func TestCompare_PDFExample(t *testing.T) {
 	// Example from the task spec:
 	// Dataset 1: A B C D D E F F
@@ -143,6 +151,7 @@ func TestCompare_PDFExample(t *testing.T) {
 	}
 }
 
+// TestCompare_Symmetric checks that Compare(a, b) equals Compare(b, a).
 func TestCompare_Symmetric(t *testing.T) {
 	path1 := writeCSV(t, "d1.csv", []string{"A", "B", "C", "D", "D", "E", "F", "F"})
 	path2 := writeCSV(t, "d2.csv", []string{"A", "C", "C", "D", "F", "F", "F", "X", "Y"})
@@ -158,6 +167,7 @@ func TestCompare_Symmetric(t *testing.T) {
 	}
 }
 
+// TestCompare_NoOverlap checks that Compare returns a zero Overlap when the files share no keys.
 func TestCompare_NoOverlap(t *testing.T) {
 	path1 := writeCSV(t, "d1.csv", []string{"A", "B"})
 	path2 := writeCSV(t, "d2.csv", []string{"C", "D"})

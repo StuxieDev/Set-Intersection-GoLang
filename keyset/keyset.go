@@ -27,9 +27,12 @@ type Options struct {
 // Counts holds per-file key statistics: the total number of keys read
 // (including duplicates) and how many times each distinct key occurred.
 type Counts struct {
-	Path  string
+	// Path is the file the counts were loaded from.
+	Path string
+	// Total is the number of keys read, including duplicates.
 	Total int
-	Freq  map[string]int // key -> number of times it appeared in the file
+	// Freq maps each distinct key to the number of times it appeared in the file.
+	Freq map[string]int
 }
 
 // Distinct returns the number of distinct keys.
