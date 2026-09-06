@@ -1,6 +1,6 @@
 # set-intersection
 
-> Written by Leo Ridgwell as a technical test submission for InfoSum.  
+> Written by Leo Ridgwell as a technical test submission.  
 > Time spent: ~3.5 hours - a bit over the suggested 2-3, partly ramp-up  
 > time since Go is newer to me than other languages I've worked in.
 
@@ -11,7 +11,7 @@ Compares the keys in two CSV files and reports:
 - the distinct overlap (how many distinct keys appear in both files)
 - the total overlap (see [How overlap is defined](#how-overlap-is-defined))
 
-Written for the InfoSum set-intersection exercise. `examples/A_f.csv` and
+Written for a set-intersection take-home exercise. `examples/A_f.csv` and
 `examples/B_f.csv` are the sample datasets from the task - single-column
 CSVs of UDPRN keys with a header row. The brief also asked for handling
 different CSV shapes (see [Flags](#flags)), thinking through larger files
