@@ -168,3 +168,7 @@ bound alongside the estimate, per the task's own note on that.
   the actual bottleneck.
 - Fuzz testing the CSV parsing path, and packaging (Dockerfile, prebuilt
   binaries) so it doesn't need a Go toolchain to run.
+
+---
+
+*Built & Maintained by <img src="https://github.com/StuxieDev.png" height="14" alt="StuxieDev" valign="middle"> [StuxieDev](https://github.com/StuxieDev).*
